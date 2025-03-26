@@ -1,0 +1,13 @@
+C:\Users\fitch\IdeaProjects\GetWeather\src\main\java\com\justmoby\GetWeather\Exceptions\WeatherNotFoundException.java
+C:\Users\fitch\IdeaProjects\GetWeather\src\main\java\com\justmoby\GetWeather\Model\GeoDTO.java
+C:\Users\fitch\IdeaProjects\GetWeather\src\main\java\com\justmoby\GetWeather\Service\GeoService.java
+C:\Users\fitch\IdeaProjects\GetWeather\src\main\java\com\justmoby\GetWeather\GetWeatherTestApplication.java
+C:\Users\fitch\IdeaProjects\GetWeather\src\main\java\com\justmoby\GetWeather\Exceptions\WeatherErrorResponse.java
+C:\Users\fitch\IdeaProjects\GetWeather\src\main\java\com\justmoby\GetWeather\Exceptions\HttpClientServerErrorException.java
+C:\Users\fitch\IdeaProjects\GetWeather\src\main\java\com\justmoby\GetWeather\Model\WeatherDTO.java
+C:\Users\fitch\IdeaProjects\GetWeather\src\main\java\com\justmoby\GetWeather\Config\RestClientConfiguration.java
+C:\Users\fitch\IdeaProjects\GetWeather\src\main\java\com\justmoby\GetWeather\Exceptions\CityNotFoundException.java
+C:\Users\fitch\IdeaProjects\GetWeather\src\main\java\com\justmoby\GetWeather\Controller\ExceptionController.java
+C:\Users\fitch\IdeaProjects\GetWeather\src\main\java\com\justmoby\GetWeather\Controller\WeatherController.java
+C:\Users\fitch\IdeaProjects\GetWeather\src\main\java\com\justmoby\GetWeather\Model\TemperatureDTO.java
+C:\Users\fitch\IdeaProjects\GetWeather\src\main\java\com\justmoby\GetWeather\Service\WeatherService.java
