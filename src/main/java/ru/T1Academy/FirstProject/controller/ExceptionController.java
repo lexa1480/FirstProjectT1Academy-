@@ -6,6 +6,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import ru.T1Academy.FirstProject.dto.error.ErrorResponse;
+import ru.T1Academy.FirstProject.exception.LoggingAspectException;
 import ru.T1Academy.FirstProject.exception.TaskNotFoundException;
 
 import java.time.LocalDateTime;
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
 public class ExceptionController
 {
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ErrorResponse> handleValidationExceptions(MethodArgumentNotValidException exception)
+    public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception)
     {
         List<Map<String, String>> errors = exception.getBindingResult()
                 .getFieldErrors()
@@ -42,7 +43,7 @@ public class ExceptionController
     }
 
     @ExceptionHandler(TaskNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleTaskNotFound(TaskNotFoundException exception)
+    public ResponseEntity<ErrorResponse> handleTaskNotFoundException(TaskNotFoundException exception)
     {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setTimestamp(LocalDateTime.now());
@@ -52,6 +53,20 @@ public class ExceptionController
 
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
+                .body(errorResponse);
+    }
+
+    @ExceptionHandler(LoggingAspectException.class)
+    public ResponseEntity<ErrorResponse> handleLoggingAspectException(LoggingAspectException exception)
+    {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        errorResponse.setError(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
+        errorResponse.setMessage(exception.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(errorResponse);
     }
 
