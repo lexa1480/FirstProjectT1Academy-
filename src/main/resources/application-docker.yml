@@ -1,0 +1,8 @@
+spring:
+  config:
+    activate:
+      on-profile: docker
+  datasource:
+    url: jdbc:postgresql://my-postgres:5432/fp_db
+    username: postgres
+    password: postgres

@@ -8,9 +8,9 @@
 		<version>3.4.2</version>
 		<relativePath/>
 	</parent>
-	<groupId>com.justmoby</groupId>
-	<artifactId>GetWeather</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<groupId>ru.T1Academy</groupId>
+	<artifactId>FirstProject</artifactId>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>FirstProject</name>
 	<description>FirstProject CRUD + Aspect</description>
 	<url/>
@@ -69,6 +69,26 @@
 		</dependency>
     </dependencies>
 
+
+
+	<profiles>
+		<profile>
+			<id>docker</id>
+			<properties>
+				<spring.profiles.active>docker</spring.profiles.active>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>dev</id>
+			<properties>
+				<spring.profiles.active>dev</spring.profiles.active>
+			</properties>
+		</profile>
+	</profiles>
+
+
+
 	<build>
 		<plugins>
 			<plugin>
@@ -101,6 +121,13 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
 	</build>
 
 </project>

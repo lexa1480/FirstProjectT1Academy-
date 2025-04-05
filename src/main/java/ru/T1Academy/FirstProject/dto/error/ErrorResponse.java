@@ -11,12 +11,11 @@ import java.util.Map;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ErrorResponse
-{
+public class ErrorResponse {
     private LocalDateTime timestamp;
     private Integer status;
     private String error;
     private String message;
 
-    List<Map<String, String>> errors;
+    private List<Map<String, String>> errors;
 }

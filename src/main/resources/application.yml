@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: FirstProjectT1Academy
+  profiles:
+    active: "@spring.profiles.active@"
+  datasource:
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+    hibernate:
+      ddl-auto: update

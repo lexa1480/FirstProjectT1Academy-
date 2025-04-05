@@ -5,6 +5,5 @@ import org.springframework.stereotype.Repository;
 import ru.T1Academy.FirstProject.model.Task;
 
 @Repository
-public interface TaskRepository extends JpaRepository<Task, Long>
-{
+public interface TaskRepository extends JpaRepository<Task, Long> {
 }

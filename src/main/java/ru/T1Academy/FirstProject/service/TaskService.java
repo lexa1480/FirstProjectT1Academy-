@@ -17,33 +17,28 @@ import java.util.List;
 @LoggingBefore
 @RequiredArgsConstructor
 @Service
-public class TaskService
-{
+public class TaskService {
     private final TaskRepository taskRepository;
 
-    public List<Task> getAllTasks()
-    {
+    public List<Task> getAllTasks() {
         return taskRepository.findAll();
     }
 
     @LoggingAfterThrowing
-    public Task getTaskById(Long id)
-    {
+    public Task getTaskById(Long id) {
         return taskRepository.findById(id)
                 .orElseThrow(() -> new TaskNotFoundException("Задача с Id = " + id + " не найдена."));
     }
 
     @LoggingAfterReturning
     @Transactional
-    public Task createTask(@Valid Task task)
-    {
+    public Task createTask(@Valid Task task) {
         return taskRepository.save(task);
     }
 
     @LoggingAround
     @Transactional
-    public Task updateTask(@Valid Task task)
-    {
+    public Task updateTask(@Valid Task task) {
         Task taskFound = taskRepository.findById(task.getId())
                         .orElseThrow(() -> new TaskNotFoundException("Задача с Id = " + task.getId() + " не найдена."));
 
@@ -57,8 +52,7 @@ public class TaskService
     @LoggingAfterThrowing
     @LoggingAfterReturning
     @Transactional
-    public void deleteTaskById(Long id)
-    {
+    public void deleteTaskById(Long id) {
         if(!taskRepository.existsById(id))
         {
             throw new TaskNotFoundException("Задача с Id = " + id + " не найдена.");
@@ -67,18 +61,3 @@ public class TaskService
         taskRepository.deleteById(id);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

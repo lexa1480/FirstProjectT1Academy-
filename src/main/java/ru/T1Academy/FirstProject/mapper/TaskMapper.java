@@ -10,8 +10,7 @@ import java.util.List;
 
 
 @Mapper(componentModel = "spring")
-public interface TaskMapper
-{
+public interface TaskMapper {
     Task toTask(TaskCreateRequest taskCreateRequest);
     Task toTask(TaskUpdateRequest taskUpdateRequest);
 

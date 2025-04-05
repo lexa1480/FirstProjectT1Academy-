@@ -9,8 +9,7 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TaskResponse
-{
+public class TaskResponse {
     @NotBlank(message = "Название не может быть пустым.")
     @Size(min = 5, max = 255, message = "Длинна названия не может быть меньше 5 и больше 255.")
     private String title;

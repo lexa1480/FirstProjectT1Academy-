@@ -3,24 +3,35 @@ package ru.T1Academy.FirstProject.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "task")
 @Entity
-public class Task
-{
+public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    Long id;
+    private Long id;
 
     @Column(name = "title", nullable = false, length = 255)
-    String title;
+    private String title;
 
     @Column(name = "description", nullable = false, length = 1000)
-    String description;
+    private String description;
 
     @Column(name = "user_id", nullable = false, columnDefinition = "BIGINT CHECK (user_id > 0)")
-    Long userId;
+    private Long userId;
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (!(object instanceof Task task)) return false;
+        return id != null && id.equals(task.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
