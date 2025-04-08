@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import ru.T1Academy.FirstProject.dto.error.ErrorResponse;
+import ru.T1Academy.FirstProject.exception.KafkaException;
 import ru.T1Academy.FirstProject.exception.LoggingAspectException;
 import ru.T1Academy.FirstProject.exception.TaskNotFoundException;
 
@@ -53,6 +54,18 @@ public class ExceptionController {
     @ExceptionHandler(LoggingAspectException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handleLoggingAspectException(LoggingAspectException exception) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        errorResponse.setError(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
+        errorResponse.setMessage(exception.getMessage());
+
+        return errorResponse;
+    }
+
+    @ExceptionHandler(KafkaException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErrorResponse handleKafkaException(KafkaException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());

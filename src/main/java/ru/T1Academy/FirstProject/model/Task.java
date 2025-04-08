@@ -2,6 +2,7 @@ package ru.T1Academy.FirstProject.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import ru.T1Academy.FirstProject.enums.TaskStatus;
 
 @Getter
 @Setter
@@ -13,6 +14,10 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private TaskStatus taskStatus = TaskStatus.CREATED;;
 
     @Column(name = "title", nullable = false, length = 255)
     private String title;
@@ -33,5 +38,10 @@ public class Task {
     @Override
     public int hashCode() {
         return getClass().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Task: " + title + "; " + description;
     }
 }

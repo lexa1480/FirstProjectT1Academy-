@@ -1,6 +1,7 @@
 package ru.T1Academy.FirstProject.mapper;
 
 import org.mapstruct.Mapper;
+import ru.T1Academy.FirstProject.dto.event.TaskStatusChangeEvent;
 import ru.T1Academy.FirstProject.dto.request.TaskCreateRequest;
 import ru.T1Academy.FirstProject.dto.request.TaskUpdateRequest;
 import ru.T1Academy.FirstProject.dto.response.TaskResponse;
@@ -14,6 +15,7 @@ public interface TaskMapper {
     Task toTask(TaskCreateRequest taskCreateRequest);
     Task toTask(TaskUpdateRequest taskUpdateRequest);
 
-    TaskResponse fromTask(Task task);
-    List<TaskResponse> fromTaskList(List<Task> taskList);
+    TaskResponse toTaskResponse(Task task);
+    List<TaskResponse> toTaskResponseList(List<Task> taskList);
+    TaskStatusChangeEvent toTaskStatusChangeEvent(Task task);
 }

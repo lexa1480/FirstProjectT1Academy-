@@ -5,11 +5,15 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import ru.T1Academy.FirstProject.enums.TaskStatus;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class TaskUpdateRequest {
+    @NotNull(message = "Статус не может иметь других значений кроме CREATED, APPROVED, COMPLETED.")
+    private TaskStatus taskStatus;
+
     @NotBlank(message = "Название не может быть пустым.")
     @Size(min = 5, max = 255, message = "Длинна названия не может быть меньше 5 и больше 255.")
     private String title;
