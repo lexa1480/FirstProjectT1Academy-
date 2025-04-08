@@ -14,6 +14,7 @@ import java.util.List;
 public interface TaskMapper {
     Task toTask(TaskCreateRequest taskCreateRequest);
     Task toTask(TaskUpdateRequest taskUpdateRequest);
+    List<Task> toTaskList(List<TaskStatusChangeEvent> taskStatusChangeEventList);
 
     TaskResponse toTaskResponse(Task task);
     List<TaskResponse> toTaskResponseList(List<Task> taskList);

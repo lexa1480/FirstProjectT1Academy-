@@ -27,3 +27,21 @@ spring:
       task-status-update-topic: task-status-update-topic
     listener:
       poll-timeout: 1000
+
+
+
+  mail:
+    host: smtp.yandex.com
+    port: 465
+    protocol: smtps
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+            port: 465
+            fallback: false
+

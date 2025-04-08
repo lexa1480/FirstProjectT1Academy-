@@ -17,9 +17,9 @@ public class Task {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private TaskStatus taskStatus = TaskStatus.CREATED;;
+    private TaskStatus taskStatus = TaskStatus.CREATED;
 
-    @Column(name = "title", nullable = false, length = 255)
+    @Column(name = "title", nullable = false)
     private String title;
 
     @Column(name = "description", nullable = false, length = 1000)

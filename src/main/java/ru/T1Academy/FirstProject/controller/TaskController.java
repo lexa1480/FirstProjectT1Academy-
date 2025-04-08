@@ -4,11 +4,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.T1Academy.FirstProject.dto.event.TaskStatusChangeEvent;
 import ru.T1Academy.FirstProject.dto.request.TaskCreateRequest;
 import ru.T1Academy.FirstProject.dto.request.TaskUpdateRequest;
 import ru.T1Academy.FirstProject.dto.response.TaskResponse;
-import ru.T1Academy.FirstProject.kafka.producer.TaskStatusChangeProducer;
 import ru.T1Academy.FirstProject.mapper.TaskMapper;
 import ru.T1Academy.FirstProject.model.Task;
 import ru.T1Academy.FirstProject.service.TaskService;
@@ -20,8 +18,6 @@ import java.util.List;
 public class TaskController {
     private final TaskMapper taskMapper;
     private final TaskService taskService;
-
-    private final TaskStatusChangeProducer producer;
 
     @GetMapping("/tasks")
     public List<TaskResponse> getAllTasks() {
@@ -51,9 +47,6 @@ public class TaskController {
         Task task = taskMapper.toTask(taskUpdateRequest);
         task.setId(id);
         Task taskUpdated = taskService.updateTask(task);
-
-        TaskStatusChangeEvent taskStatusChangeEvent = taskMapper.toTaskStatusChangeEvent(task);
-        producer.sendTaskStatusUpdate(taskStatusChangeEvent);
 
         return taskMapper.toTaskResponse(taskUpdated);
     }
