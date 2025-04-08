@@ -1,0 +1,64 @@
+version: "3.4"
+name: fp_stack
+
+
+networks:
+  network:
+    driver: bridge
+    external:
+      name: network_net
+
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_db
+    hostname: postgres_db
+    ports:
+      - "5430:5432"
+    networks:
+      - network
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=fp_db
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:5.5.0
+    container_name: zookeeper_mng
+    hostname: zookeeper_mng
+    ports:
+      - "2181:2181"
+    networks:
+      - network
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  kafka:
+    image: confluentinc/cp-kafka:5.5.0
+    container_name: kafka_brk
+    hostname: kafka_brk
+    depends_on:
+      - zookeeper
+    ports:
+      - "29092:29092"
+      - "9092:9092"
+    networks:
+      - network
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper_mng:2181'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka_brk:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+
+
+
+
+
+
+

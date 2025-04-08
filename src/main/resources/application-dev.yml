@@ -6,3 +6,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/T1AcademyFirstProject
     username: postgres
     password: postgres
+
+  mail:
+    username: lexa.f1406
+    password: mrfomfyltqgucatk
