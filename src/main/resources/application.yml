@@ -1,13 +1,47 @@
 spring:
   application:
     name: FirstProjectT1Academy
+
   profiles:
     active: "@spring.profiles.active@"
+
   datasource:
     driver-class-name: org.postgresql.Driver
+
   jpa:
     properties:
       hibernate:
         show_sql: true
     hibernate:
       ddl-auto: update
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: task-notification-group
+      auto-offset-reset: earliest
+      properties:
+        trusted-packages: "*"
+        max-pool-records-config: 5
+    topic:
+      task-status-update-topic: task-status-update-topic
+    listener:
+      poll-timeout: 1000
+
+
+
+  mail:
+    host: smtp.yandex.com
+    port: 465
+    protocol: smtps
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+            port: 465
+            fallback: false
+

@@ -23,16 +23,15 @@ public class TaskController {
     public List<TaskResponse> getAllTasks() {
         List<Task> taskList = taskService.getAllTasks();
 
-        return taskMapper.fromTaskList(taskList);
+        return taskMapper.toTaskResponseList(taskList);
     }
 
     @GetMapping("/tasks/{id}")
     public TaskResponse getTask(@PathVariable Long id) {
         Task task = taskService.getTaskById(id);
 
-        return taskMapper.fromTask(task);
+        return taskMapper.toTaskResponse(task);
     }
-
 
     @PostMapping("/tasks")
     @ResponseStatus(HttpStatus.CREATED)
@@ -40,7 +39,7 @@ public class TaskController {
         Task task = taskMapper.toTask(taskCreateRequest);
         Task taskCreated = taskService.createTask(task);
 
-        return taskMapper.fromTask(taskCreated);
+        return taskMapper.toTaskResponse(taskCreated);
     }
 
     @PutMapping("/tasks/{id}")
@@ -49,7 +48,7 @@ public class TaskController {
         task.setId(id);
         Task taskUpdated = taskService.updateTask(task);
 
-        return taskMapper.fromTask(taskUpdated);
+        return taskMapper.toTaskResponse(taskUpdated);
     }
 
     @DeleteMapping("/tasks/{id}")
