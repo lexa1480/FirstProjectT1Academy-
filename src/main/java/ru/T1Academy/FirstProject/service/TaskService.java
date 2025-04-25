@@ -29,19 +29,16 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    @LoggingAfterThrowing
     public Task getTaskById(Long id) {
         return taskRepository.findById(id)
                 .orElseThrow(() -> new TaskNotFoundException("Задача с Id = " + id + " не найдена."));
     }
 
-    @LoggingAfterReturning
     @Transactional
     public Task createTask(@Valid Task task) {
         return taskRepository.save(task);
     }
 
-    @LoggingAround
     @Transactional
     public Task updateTask(@Valid Task task) {
         Task taskFound = taskRepository.findById(task.getId())
@@ -65,8 +62,6 @@ public class TaskService {
         return taskUpdated;
     }
 
-    @LoggingAfterThrowing
-    @LoggingAfterReturning
     @Transactional
     public void deleteTaskById(Long id) {
         if(!taskRepository.existsById(id))

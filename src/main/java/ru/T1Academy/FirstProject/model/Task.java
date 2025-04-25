@@ -6,6 +6,7 @@ import ru.T1Academy.FirstProject.enums.TaskStatus;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "task")
 @Entity

@@ -3,6 +3,25 @@ spring:
     activate:
       on-profile: docker
   datasource:
+    driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://postgres-app:5432/fp_db
     username: postgres
     password: postgres
+
+  mail:
+    username: lexa.f1406
+    password: mrfomfyltqgucatk
+
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: task-notification-group
+      auto-offset-reset: earliest
+      properties:
+        trusted-packages: "*"
+        max-pool-records-config: 5
+    topic:
+      task-status-update-topic: task-status-update-topic
+    listener:
+      poll-timeout: 1000
