@@ -36,6 +36,5 @@ public class NotificationService {
         } catch (Exception e) {
             log.error("Kafka получил ошибку во время отправки уведомления об изменении статуса на почту.");
         }
-
     }
 }
